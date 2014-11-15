@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.6
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile ([
+        'commons-collections:commons-collections:3.2.1',
+        'commons-configuration:commons-configuration:1.10',
+        'commons-lang:commons-lang:2.6',
+        'org.slf4j:slf4j-api:1.7.7'
+        ])
+    testCompile 'junit:junit:4.+'
+}
+
+eclipse.classpath.file {
+    beforeMerged { classpath ->
+        classpath.entries.removeAll { entry -> entry.kind == 'lib' || entry.kind == 'var' }
+    }
+    whenMerged { classpath ->
+        classpath.entries.findAll { entry -> entry.kind == 'lib' }*.exported = false
+    }
+}
+
+eclipse.project.file.beforeMerged { project ->
+    project.natures.clear()
+}
+
