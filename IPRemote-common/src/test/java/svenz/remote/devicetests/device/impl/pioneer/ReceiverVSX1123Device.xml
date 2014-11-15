@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<root
+  xmlns="urn:schemas-upnp-org:device-1-0"
+  xmlns:ms=" urn:microsoft-com:wmc-1-0"
+  xmlns:pnpx="http://schemas.microsoft.com/windows/pnpx/2005/11"
+  xmlns:df="http://schemas.microsoft.com/windows/2008/09/devicefoundation">
+	<specVersion>
+		<major>1</major>
+		<minor>0</minor>
+	</specVersion>
+	<device>
+		<av:X_ipRemoteReady xmlns:av="http://www.pioneerelectronics.com/xmlns/av">1</av:X_ipRemoteReady>
+		<av:X_ipRemoteTcpPort xmlns:av="http://www.pioneerelectronics.com/xmlns/av">8102</av:X_ipRemoteTcpPort>
+		<dlna:X_DLNADOC xmlns:dlna="urn:schemas-dlna-org:device-1-0">DMR-1.50</dlna:X_DLNADOC>
+		<pnpx:X_compatibleId>MS_DigitalMediaDeviceClass_DMR_V001
+				</pnpx:X_compatibleId>
+		<pnpx:X_deviceCategory>MediaDevices
+				</pnpx:X_deviceCategory>
+		<pnpx:X_hardwareId>VEN_0112&amp;DEV_0003&amp;REV_01 VEN_0033&amp;DEV_000C&amp;REV_01
+				</pnpx:X_hardwareId>
+		<df:X_deviceCategory>Multimedia.DMR
+				</df:X_deviceCategory>
+		<deviceType>urn:schemas-upnp-org:device:MediaRenderer:1</deviceType>
+		<friendlyName>VSX-1123</friendlyName>
+		<manufacturer>PIONEER CORPORATION</manufacturer>
+		<manufacturerURL>http://www.pioneerelectronics.com</manufacturerURL>
+		<modelDescription>Digital Media Client</modelDescription>
+		<modelName>VSX-1123/CUXESM</modelName>
+		<modelNumber>Digital Media Client</modelNumber>
+		<UDN>uuid:5F9EC1B3-ED59-79BB-4530-745e1c2f189a</UDN>
+		<UPC>123810928305</UPC>
+		<iconList>
+			<icon>
+				<mimetype>image/jpeg</mimetype>
+				<width>48</width>
+				<height>48</height>
+				<depth>24</depth>
+				<url>/pioneer_icon_sm.jpg</url>
+			</icon>
+			<icon>
+				<mimetype>image/jpeg</mimetype>
+				<width>120</width>
+				<height>120</height>
+				<depth>24</depth>
+				<url>/pioneer_icon_lrg.jpg</url>
+			</icon>
+			<icon>
+				<mimetype>image/png</mimetype>
+				<width>48</width>
+				<height>48</height>
+				<depth>24</depth>
+				<url>/pioneer_icon_sm.png</url>
+			</icon>
+			<icon>
+				<mimetype>image/png</mimetype>
+				<width>120</width>
+				<height>120</height>
+				<depth>24</depth>
+				<url>/pioneer_icon_lrg.png</url>
+			</icon>
+		</iconList>
+		<serviceList>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:RenderingControl:1</serviceType>
+				<serviceId>urn:upnp-org:serviceId:RenderingControl</serviceId>
+				<SCPDURL>/RenderingControl/desc.xml</SCPDURL>
+				<controlURL>/RenderingControl/ctrl</controlURL>
+				<eventSubURL>/RenderingControl/evt</eventSubURL>
+			</service>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+				<serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+				<SCPDURL>/ConnectionManager/desc.xml</SCPDURL>
+				<controlURL>/ConnectionManager/ctrl</controlURL>
+				<eventSubURL>/ConnectionManager/evt</eventSubURL>
+			</service>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+				<serviceId>urn:upnp-org:serviceId:AVTransport</serviceId>
+				<SCPDURL>/AVTransport/desc.xml</SCPDURL>
+				<controlURL>/AVTransport/ctrl</controlURL>
+				<eventSubURL>/AVTransport/evt</eventSubURL>
+			</service>
+		</serviceList>
+		<presentationURL>http://192.168.1.13</presentationURL>
+	</device>
+</root>

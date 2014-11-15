@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<DeviceGroups>
+	<Devices>
+		<Device name="TV" impl="svenz.remote.device.impl.sharp.TVAquas60LE650Device" />
+		<Device name="Receiver" impl="svenz.remote.device.impl.pioneer.ReceiverVSX1123Device" />
+		<Device name="BD" impl="svenz.remote.device.impl.pioneer.PlayerBDP150Device" />
+	</Devices>
+	<Groups>
+		<Group location="zone.1" activity="dvd">
+			<Playable ref="BD.playable" />
+			<Sound ref="Receiver.zone1.sound" />
+			<Menu ref="BD.menuDisk" name="disk" />
+			<Menu ref="BD.menuMain" name="BD.main" />
+			<Menu ref="TV.menu" name="tv" />
+			<Select ref="TV.input" value="hdmi.1" />
+			<Select ref="Receiver.zone1.input" value="25" />
+		</Group>
+	</Groups>
+</DeviceGroups>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+ <specVersion>
+  <major>1</major>
+  <minor>0</minor>
+ </specVersion>
+ <device>
+  <deviceType>urn:pioneer-co-jp:device:PioControlServer:1</deviceType>
+  <friendlyName>BDP-150</friendlyName>
+  <manufacture>PIONEER CORPORATION</manufacture>
+  <modelName>BDP-150/UCXESM</modelName>
+  <UDN>uuid:5f9ec1b3-ed59-79bc-4530-745e1c1c832c</UDN>
+  <av:X_ipRemoteReady xmlns:av="http://www.pioneerelectronics.com/xmlns/av">1</av:X_ipRemoteReady>
+  <av:X_ipRemoteTcpPort xmlns:av="http://www.pioneerelectronics.com/xmlns/av">8102</av:X_ipRemoteTcpPort>
+  <av:X_ipRemoteBinTcpPort xmlns:av="http://www.pioneerelectronics.com/xmlns/av">8104</av:X_ipRemoteBinTcpPort>
+ </device>
+ <URLBase>http://192.168.1.12:38400</URLBase>
+</root>

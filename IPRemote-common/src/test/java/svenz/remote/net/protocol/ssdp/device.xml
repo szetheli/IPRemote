@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+ <specVersion>
+  <major>1</major>
+  <minor>0</minor>
+ </specVersion>
+ <device>
+  <deviceType>urn:pioneer-co-jp:device:PioControlServer:1</deviceType>
+  <friendlyName>Test device</friendlyName>
+  <manufacture>PIONEER CORPORATION</manufacture>
+  <modelName>BDP-150/UCXESM</modelName>
+  <UDN>uuid:5f9ec1b3-ed59-79bc-4530-745e1c1c832c</UDN>
+  <av:X_ipRemoteReady xmlns:av="http://www.pioneerelectronics.com/xmlns/av">1</av:X_ipRemoteReady>
+  <av:X_ipRemoteTcpPort xmlns:av="http://www.pioneerelectronics.com/xmlns/av">8102</av:X_ipRemoteTcpPort>
+  <av:X_ipRemoteBinTcpPort xmlns:av="http://www.pioneerelectronics.com/xmlns/av">8104</av:X_ipRemoteBinTcpPort>
+  		<serviceList>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:RenderingControl:1</serviceType>
+				<serviceId>urn:upnp-org:serviceId:RenderingControl</serviceId>
+				<SCPDURL>/RenderingControl/desc.xml</SCPDURL>
+				<controlURL>/RenderingControl/ctrl</controlURL>
+				<eventSubURL>/RenderingControl/evt</eventSubURL>
+			</service>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+				<serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+				<SCPDURL>/ConnectionManager/desc.xml</SCPDURL>
+				<controlURL>/ConnectionManager/ctrl</controlURL>
+				<eventSubURL>/ConnectionManager/evt</eventSubURL>
+			</service>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+				<serviceId>urn:upnp-org:serviceId:AVTransport</serviceId>
+				<SCPDURL>/AVTransport/desc.xml</SCPDURL>
+				<controlURL>/AVTransport/ctrl</controlURL>
+				<eventSubURL>/AVTransport/evt</eventSubURL>
+			</service>
+		</serviceList>
+  
+ </device>
+ 
+ <URLBase>http://127.0.0.1:38400</URLBase>
+</root>
