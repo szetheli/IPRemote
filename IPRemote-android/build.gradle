@@ -1,0 +1,59 @@
+apply plugin: 'android'
+
+version = '1.0'
+
+buildscript {
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.14.2'
+    }
+}
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "21.1.1"
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions { // TODO remove
+        abortOnError false
+    }
+    
+}
+
+configurations {
+    compile.exclude module:'commons-collections'
+    compile.exclude module:'commons-configuration'
+    compile.exclude module:'commons-lang'
+    compile.exclude module:'commons-logging'
+    compile.exclude module:'stax-api'
+    compile.exclude module:'stax'
+    compile.exclude module:'xpp3'
+}
+
+dependencies {
+    compile([
+            "svenz:IPRemote-common:1.0",
+            "com.google.android:android:4.1.1.4"
+        ])
+}
+
+eclipse.classpath {
+/*
+  containers.clear()
+  file {
+    beforeMerged { classpath ->
+        classpath.entries.removeAll { entry -> entry.kind == 'lib' || entry.kind == 'var' }
+    }
+    whenMerged { classpath ->
+        classpath.entries.findAll { entry -> entry.kind == 'lib' }*.exported = false
+        // keep src with output
+        def srcs = classpath.entries.findAll({ entry -> entry.kind == 'src' && entry.output != null })
+                                    .collect({ entry -> entry.path })
+        classpath.entries.removeAll { entry -> entry.kind == 'src' && entry.output == null && srcs.contains(entry.path) }
+    }
+  }
+  */
+}

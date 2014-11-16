@@ -1,19 +1,12 @@
 apply plugin: 'java'
+apply plugin: 'eclipse'
 
+sourceCompatibility = 1.8
 version = '1.0'
-group = 'svenz'
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
-    compile ([
-            'commons-collections:commons-collections:3.2.1',
-            'commons-configuration:commons-configuration:1.10',
-            'commons-lang:commons-lang:2.6',
-            'org.slf4j:slf4j-api:'+revSLF4j,
-            'org.simpleframework:simple-xml:2.7.1'
+    compile([
+            "svenz:IPRemote-common:1.0",
         ])
     testCompile ([
             'junit:junit:4.+',
@@ -21,14 +14,8 @@ dependencies {
             'org.slf4j:jcl-over-slf4j:'+revSLF4j,
             'org.slf4j:slf4j-log4j12:'+revSLF4j,
         ])
+        
 }
-
-test {
-    exclude '**/devicetests/**'
-}
-
-compileTestJava.sourceCompatibility = 1.7
-compileTestJava.targetCompatibility = 1.7
 
 eclipse.classpath {
   containers.clear()

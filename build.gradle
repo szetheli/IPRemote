@@ -1,0 +1,25 @@
+subprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'maven'
+
+    def mavenLocal = "file:"+projectDir+"/../maven/repo"
+    
+    repositories {
+        mavenCentral()
+        maven { url mavenLocal }
+    }
+    
+    buildscript.repositories.addAll(repositories)
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: mavenLocal)
+            }
+        }
+    }
+    
+    ext {
+        revSLF4j = '1.7.7'
+    }
+}

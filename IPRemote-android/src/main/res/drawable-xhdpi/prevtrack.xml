@@ -1,0 +1,5 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:left="-44dp"><bitmap android:src="@drawable/bar" android:gravity="center"/></item>
+    <item android:left="-8dp" android:drawable="@drawable/triangle_left" android:gravity="center" />
+    <item android:left="36dp" android:drawable="@drawable/triangle_left" android:gravity="center" />
+</layer-list>

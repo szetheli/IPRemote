@@ -1,0 +1,28 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+	    <bitmap android:src="@drawable/power0r" android:gravity="center"/>
+	</item>
+	<item>
+	    <bitmap android:src="@drawable/power0s" android:gravity="center"/>
+	</item>
+    <item android:id="@+id/power_ring_on">
+        <clip android:clipOrientation="horizontal" android:gravity="left" >
+            <bitmap android:src="@drawable/power1r" android:gravity="center" />
+        </clip>
+    </item>
+    <item android:id="@+id/power_ring_off">
+        <clip android:clipOrientation="horizontal" android:gravity="left" >
+            <bitmap android:src="@drawable/power0r" android:gravity="center" />
+        </clip>
+    </item>
+    <item android:id="@+id/power_stick_on">
+        <clip android:clipOrientation="vertical" android:gravity="bottom">
+            <bitmap android:src="@drawable/power1s" android:gravity="center" />
+        </clip>
+    </item>
+    <item android:id="@+id/power_stick_off">
+        <clip android:clipOrientation="vertical" android:gravity="bottom">
+            <bitmap android:src="@drawable/power0s" android:gravity="center" />
+        </clip>
+    </item>
+</layer-list>

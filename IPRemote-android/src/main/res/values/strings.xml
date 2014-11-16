@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Universal Remote</string>
+    <string name="action_settings">Settings</string>
+    <string name="location">Select Location</string>
+    <string name="activity">Select Activity</string>
+    <string name="power">Power</string>
+    <string name="menu">Menu</string>
+    <string name="exit">Exit</string>
+    <string name="back">Back</string>
+    <string name="volUp">Volume Up</string>
+    <string name="volDown">Volume Down</string>
+    <string name="mute">Mute</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="prevTrack">Previous Track</string>
+    <string name="reverse">Reverse</string>
+    <string name="forward">Forward</string>
+    <string name="nextTrack">Next Track</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="ok">OK</string>
+    <string name="loading">Loading...</string>
+
+    <string-array name="spinner_default">
+        <item>@string/loading</item>
+    </string-array>
+
+    <!-- Location drop down -->
+    <string name="location_none">Select Location</string>
+    <string name="location_zone_1">Living Room</string>
+    <string name="location_zone_2">Kitchen</string>
+    <string name="location_zone_3">Bedroom</string>
+
+    <!-- Activity drop down -->
+    <string name="activity_none">Select Source</string>
+    <string name="activity_dvd">DVD</string>
+    <string name="activity_hulu">Hulu</string>
+    <string name="activity_netflix">Netflix</string>
+    <string name="activity_youtube">Youtube</string>
+    <string name="activity_pandora">Pandora</string>
+    <string name="activity_radio">Radio</string>
+
+    <!-- Menu drop down -->
+    <string name="menu_title">Select a menu</string>
+    <string name="menu_dvd_disk">Disk Menu</string>
+    <string name="menu_dvd_main">Disk System Menu</string>
+    <string name="menu_tv">TV Menu</string>
+    <string name="volume_level_step">1550</string>
+    <string name="volume_level_steps">5</string>
+    <string name="title_activity_power_detail">Power Details</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<DeviceGroups>
+	<Devices>
+		<Device name="TV" impl="svenz.remote.device.impl.sharp.TVAquas60LE650Device" />
+		<Device name="Receiver" impl="svenz.remote.device.impl.pioneer.ReceiverVSX1123Device" />
+		<Device name="BD" impl="svenz.remote.device.impl.pioneer.PlayerBDP150Device" />
+	</Devices>
+	<Groups>
+		<Group location="zone.1" activity="dvd">
+			<Playable ref="BD.playable" />
+			<Sound ref="Receiver.zone1.sound" />
+			<Menu ref="BD.menuDisk" name="dvd.disk" />
+			<Menu ref="BD.menuMain" name="dvd.main" />
+			<Menu ref="TV.menu" name="tv" />
+			<Select ref="TV.input" value="hdmi.1" />
+			<Select ref="Receiver.zone1.input" value="25" />
+			<Select ref="BD.input" value="dvd" />
+		</Group>
+		<Group location="zone.1" activity="netflix">
+			<Playable ref="TV.playable" />
+			<Sound ref="TV.sound" />
+			<Menu ref="TV.menu" name="tv" />
+			<Select ref="TV.input" value="netflix" />
+		</Group>
+		<Group location="zone.1" activity="hulu">
+			<Sound ref="Receiver.zone1.sound" />
+			<Menu ref="TV.menu" name="tv" />
+			<Select ref="TV.input" value="hdmi.1" />
+			<Select ref="Receiver.zone1.input" value="24" />
+		</Group>
+		<Group location="zone.1" activity="youtube">
+			<Playable ref="TV.playable" />
+			<Sound ref="TV.sound" />
+			<Menu ref="TV.menu" name="tv" />
+			<Select ref="TV.input" value="youtube" />
+		</Group>
+		<Group location="zone.1" activity="radio">
+			<Sound ref="Receiver.zone1.sound" />
+			<!--  TODO radio menu -->
+			<Select ref="Receiver.zone1.input" value="02" />
+		</Group>
+		<Group location="zone.2" activity="radio">
+			<Sound ref="Receiver.zone2.sound" />
+			<!--  TODO radio menu -->
+			<Select ref="Receiver.zone2.input" value="02" />
+		</Group>
+		<!--  TODO more groups -->
+		
+	</Groups>
+</DeviceGroups>

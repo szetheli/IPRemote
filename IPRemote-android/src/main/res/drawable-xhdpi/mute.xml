@@ -1,0 +1,12 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mute_base_clip">
+	    <clip android:clipOrientation="horizontal" android:gravity="left">
+	        <bitmap android:src="@drawable/mute_base" android:gravity="center" />
+	    </clip>
+    </item>
+    <item android:id="@+id/mute_on_clip">
+	    <clip android:clipOrientation="horizontal" android:gravity="left">
+	        <bitmap android:src="@drawable/mute_on" android:gravity="center" />
+	    </clip>
+    </item>
+</layer-list>
