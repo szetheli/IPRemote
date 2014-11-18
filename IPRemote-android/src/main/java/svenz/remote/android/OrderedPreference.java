@@ -89,7 +89,7 @@ public class OrderedPreference
 	{
 		Editor editor = m_preferences.edit();
 		editor.putString(key, value);
-		editor.commit();
+		editor.apply();
 		LOGGER.trace("Order updated {}:{}", key, value);
 
 	}
