@@ -16,14 +16,17 @@ import java.io.StringReader;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
+import java.net.NoRouteToHostException;
 import java.net.SocketException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.EventListener;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -34,9 +37,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.simpleframework.xml.core.Persister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import svenz.remote.common.utilities.LoggingRunnable;
 import svenz.remote.common.utilities.Utilities;
 import svenz.remote.net.nio.AsyncSocketChannelCallback;
@@ -90,6 +95,7 @@ public class SSDPManager implements Closeable
 	private Future<?> m_searchFuture;
 	private long m_searchFrequencyMS;
 	private boolean m_opened = false;
+	private Collection<String> m_allowedContentTypes = new HashSet<String>(Arrays.asList("text/xml", "text/html", "application/xml"));
 
 	public SSDPManager()
 	{
@@ -344,9 +350,16 @@ public class SSDPManager implements Closeable
 	private Device getDevice(InputStream is, URLConnection conn) throws Exception
 	{
 		String contentType = conn.getContentType();
-		if (contentType == null || "text/html".equals(contentType) || "application/xml".equals(contentType))
+		String charset = "UTF-8";
+		int idx = contentType.indexOf(';');
+		if(idx > 0)
 		{
-			Root root = new Persister().read(Root.class, is);
+			contentType = contentType.substring(0, idx);
+			// TODO handle charset
+		}
+		if (contentType == null || m_allowedContentTypes.contains(contentType))
+		{
+			Root root = new Persister().read(Root.class, new InputStreamReader(is, charset));
 			return root.getDevice();
 		}
 		else
@@ -456,16 +469,27 @@ public class SSDPManager implements Closeable
 
 		public void send(byte[] b)
 		{
-			for (DatagramListenerChannelInstance instance : m_listeners)
+			for (Iterator<DatagramListenerChannelInstance> iter = m_listeners.iterator(); iter.hasNext(); )
 			{
+				DatagramListenerChannelInstance instance = iter.next();
 				try
 				{
 					instance.send(ByteBuffer.wrap(b), m_address);
+				}
+				catch (NoRouteToHostException e)
+				{
+					LOGGER.debug("Unable to send to unroutable {}", instance);
+					iter.remove();
+					Utilities.safeClose(instance);
 				}
 				catch (IOException e)
 				{
 					LOGGER.error("Unable to send to {}", instance, e);
 				}
+			}
+			if(m_listeners.isEmpty())
+			{
+				throw new IllegalStateException("Unable to send due to no networks available");
 			}
 		}
 

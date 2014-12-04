@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static svenz.test.helper.TestHelper.waitCapture;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -30,6 +31,7 @@ import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
 import org.apache.log4j.Level;
 import org.easymock.Capture;
 import org.easymock.CaptureType;
@@ -39,11 +41,13 @@ import org.easymock.IMocksControl;
 import org.easymock.internal.Result;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import svenz.remote.common.utilities.Utilities;
 import svenz.test.helper.TestHelper;
 
@@ -286,6 +290,7 @@ public class SocketChannelManagerUnitTests
 	}
 
 	@Test
+	@Ignore("OS dependant")
 	public void testSendLargeDatagram() throws Exception
 	{
 		int port = getFreePort();

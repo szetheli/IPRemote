@@ -34,16 +34,22 @@ public class LoggingDeviceListener implements IDeviceListener<Device>
 	@Override
 	public Device deviceAdded(Device device, InetSocketAddress address)
 	{
-		LOGGER.info("DeviceAdded: type:{}\tfriendlyname:{}\tmodel:{}\taddress:{}", device.getDeviceType(),
-				device.getFriendlyName(), device.getModelName(), address);
+		LOGGER.info("DeviceAdded: type:{}\tfriendlyname:{}\tmodel:{}\taddress:{}", 
+				device.getDeviceType(),
+				device.getFriendlyName(), 
+				device.getModelName(), 
+				address);
 		return device;
 	}
 
 	@Override
 	public void deviceRemoved(Device device)
 	{
-		LOGGER.info("DeviceRemoved: type:" + device.getDeviceType() + "\tfriendlyname:" + device.getFriendlyName()
-				+ "\tmodel:" + device.getModelName());
+		LOGGER.info("DeviceRemoved: type:{}\tfriendlyname:{}\tmodel:{}",
+				device.getDeviceType(),
+				device.getFriendlyName(),
+				device.getModelName()
+				);
 	}
 
 	@Override
