@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="false"
+	xmlns:log4j='http://jakarta.apache.org/log4j/'>
+ 
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %-10t %c{1} %m%n" />
+		</layout>
+	</appender>
+	<appender name="trace" class="org.apache.log4j.RollingFileAppender"> 
+		<param name="append" value="true" />
+		<param name="file" value="./logs/trace.log"/>
+		<param name="MaxFileSize" value="1MB"/>
+		<!-- Keep one backup file -->
+		<param name="MaxBackupIndex" value="1"/>
+		<layout class="org.apache.log4j.PatternLayout"> 
+			<param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss.SSS} %-5p -10%t %c{1} %m%n"/> 
+		</layout> 
+	</appender> 
+
+	<logger name="svenz.remote.net.nio">
+		<!-- <level value="TRACE" /> -->
+	</logger>
+	<logger name="svenz.remote.net.protocol.ssdp">
+		<!-- <level value="TRACE" /> -->
+	</logger>
+	<logger name="svenz.remote.device.ipremote">
+		<!-- <level value="TRACE" /> -->
+	</logger>
+	<logger name="svenz.remote.device.DeviceGroupRegistry">
+		<level value="TRACE" />
+	</logger>
+	<logger name="svenz.remote.net.nio.SocketChannelInstance">
+		<level value="TRACE" />
+	</logger>
+	<logger name="svenz.remote.net.nio.SocketChannelManager">
+		<level value="TRACE" />
+	</logger>
+	<logger name="svenz.remote.net.protocol.ssdp.SSDPManager">
+		<level value="TRACE" />
+	</logger>
+
+	<logger name="svenz.remote.device.impl.pioneer">
+		<level value="DEBUG" />
+		<appender-ref ref="trace" />
+	</logger>
+	<logger name="svenz.remote.device.impl.sharp">
+		<level value="DEBUG" />
+		<appender-ref ref="trace" />
+	</logger>
+
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="stdout" />
+	</root>
+
+</log4j:configuration>
