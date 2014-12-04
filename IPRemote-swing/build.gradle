@@ -26,7 +26,7 @@ eclipse.classpath {
     whenMerged { classpath ->
         classpath.entries.findAll { entry -> entry.kind == 'lib' }*.exported = false
         // keep src with output
-        def srcs = classpath.entries.findAll({ entry -> entry.kind == 'src' && entry.output != null })
+        def srcs = classpath.entries.findAll({ entry -> entry.kind == 'src' && (entry.output != null ) })
                                     .collect({ entry -> entry.path })
         classpath.entries.removeAll { entry -> entry.kind == 'src' && entry.output == null && srcs.contains(entry.path) }
     }
