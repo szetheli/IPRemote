@@ -327,7 +327,8 @@ public class SocketChannelManagerUnitTests
 		m_control.replay();
 		try (DatagramListenerChannelInstance instance = m_manager.listenDatagram(address, callback))
 		{
-			Thread.sleep(30);
+			Thread.sleep(30); // wait for the socket to finish opening
+			m_manager.getLoopbackAddress().clear();
 			byte[] b = "Test".getBytes();
 			instance.send(ByteBuffer.wrap(b), address);
 

@@ -13,6 +13,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
+import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +27,15 @@ public class DatagramListenerChannelInstance extends SocketChannelInstance<Datag
 {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatagramListenerChannelInstance.class);
+	private Collection<SocketAddress> m_loopbackAddresses;
 
-
-	public DatagramListenerChannelInstance(ISocketChannelCallback callback, DatagramChannel channel)
+	public DatagramListenerChannelInstance(
+			ISocketChannelCallback callback, 
+			DatagramChannel channel, 
+			Collection<SocketAddress> loopbackAddresses)
 	{
 		super(callback);
+		m_loopbackAddresses = loopbackAddresses;
 		setChannel(channel);
 	}
 
@@ -48,7 +53,7 @@ public class DatagramListenerChannelInstance extends SocketChannelInstance<Datag
 			return 0;
 
 		InetSocketAddress address = (InetSocketAddress) channel.receive(b);
-		if (address != null)
+		if (address != null && !m_loopbackAddresses.contains(address))
 			doRead(b, address);
 		b.clear();
 		return 0;

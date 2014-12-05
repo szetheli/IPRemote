@@ -15,6 +15,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.ProtocolFamily;
+import java.net.SocketAddress;
 import java.net.StandardProtocolFamily;
 import java.nio.ByteBuffer;
 import java.nio.channels.CancelledKeyException;
@@ -29,8 +30,10 @@ import java.nio.channels.WritableByteChannel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -54,6 +57,7 @@ public class SocketChannelManager implements Closeable
 			new ConcurrentLinkedQueue<Callable<? extends SelectableChannel>>();
 	private Selector m_selector;
 	private ScheduledExecutorService m_executor;
+	private final Map<SocketAddress, Boolean> m_loopbackAddress = new ConcurrentHashMap<SocketAddress, Boolean>();
 
 
 	/**
@@ -71,6 +75,10 @@ public class SocketChannelManager implements Closeable
 		m_executor = executor;
 	}
 
+	Collection<SocketAddress> getLoopbackAddress()
+	{
+		return m_loopbackAddress.keySet();
+	}
 
 	/**
 	 * Check if JDK 7 NIO is available
@@ -123,6 +131,7 @@ public class SocketChannelManager implements Closeable
 				Utilities.safeClose((SocketChannelInstance<?>) key.attachment());
 			}
 
+			wakeSelector();
 			Utilities.safeClose(m_selector);
 			m_selector = null;
 			Utilities.safeClose(m_datagram);
@@ -205,7 +214,7 @@ public class SocketChannelManager implements Closeable
 	private DatagramListenerChannelInstance listenDatagram(final DatagramChannel channel,
 			final ISocketChannelCallback callback)
 	{
-		final DatagramListenerChannelInstance instance = new DatagramListenerChannelInstance(callback, channel);
+		final DatagramListenerChannelInstance instance = new DatagramListenerChannelInstance(callback, channel, m_loopbackAddress.keySet());
 		Callable<DatagramChannel> c = new Callable<DatagramChannel>()
 			{
 				@Override
@@ -213,6 +222,7 @@ public class SocketChannelManager implements Closeable
 				{
 					try
 					{
+						m_loopbackAddress.put(channel.getLocalAddress(), Boolean.TRUE);
 						instance.setKey(channel.register(m_selector, SelectionKey.OP_READ, instance));
 					}
 					catch (Exception e)
@@ -367,6 +377,7 @@ public class SocketChannelManager implements Closeable
 	{
 		private final ByteBuffer m_readBuffer = ByteBuffer.allocate(1024);
 
+
 		@Override
 		public void run()
 		{
@@ -375,7 +386,8 @@ public class SocketChannelManager implements Closeable
 				Selector selector = m_selector;
 				registerPending(selector);
 				int selected = selector.select();
-				LOGGER.trace("{} channels ready.", selected);
+				if(selected > 0)
+					LOGGER.trace("{} channels ready.", selected);
 				for (Iterator<SelectionKey> iter = selector.selectedKeys().iterator(); iter.hasNext();)
 				{
 					SelectionKey key = iter.next();
