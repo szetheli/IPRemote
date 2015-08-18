@@ -299,6 +299,7 @@ public class SSDPManager implements Closeable
 		tracker.refresh(age);
 		if (existing)
 		{
+			LOGGER.trace("Device {} already registered.  Refreshed", deviceId);
 			return;
 		}
 
@@ -308,11 +309,14 @@ public class SSDPManager implements Closeable
 		{
 			URL url = new URL(location);
 			URLConnection conn = url.openConnection();
+			conn.setConnectTimeout(200);
+			conn.setReadTimeout(500);
+			LOGGER.trace("Reading device spec from {}", url);
 			is = conn.getInputStream();
 			if(LOGGER.isTraceEnabled())
 			{
 				String s = read(is);
-				LOGGER.info("{}\n{}", conn.getHeaderFields(), s);
+				LOGGER.info("Device spec retrieved {}:\nHeaders:{}\n{}", deviceId, conn.getHeaderFields(), s);
 				is = new ByteArrayInputStream(s.getBytes());
 			}
 			Device device = getDevice(is, conn);
@@ -321,7 +325,7 @@ public class SSDPManager implements Closeable
 		}
 		catch (Exception e)
 		{
-			LOGGER.error("Unable to handle device add from " + location, e);
+			LOGGER.error("Unable to handle device add from {}", location, e);
 		}
 		finally
 		{

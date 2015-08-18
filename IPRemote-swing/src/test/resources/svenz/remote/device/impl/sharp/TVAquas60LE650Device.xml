@@ -1,0 +1,28 @@
+<?xml version="1.0"?><root xmlns="urn:schemas-upnp-org:device-1-0">
+    <specVersion>
+        <major>1</major>
+        <minor>0</minor>
+    </specVersion>
+    <device>
+        <UDN>uuid:e94ee5fe-0a78-11e1-b06a-34F62D1508A5</UDN>
+        <deviceType>urn:schemas-sharp-co-jp:device:AquosIPC:1</deviceType>
+        <friendlyName>AQUOS LE650U</friendlyName>
+        <manufacturer>Sharp Corporation</manufacturer>
+        <manufacturerURL>http://www.sharp-world.com/</manufacturerURL>
+        <modelName>AQUOS 
+LC-60LE650U</modelName>
+        <modelNumber>1.0W</modelNumber>
+        <modelURL>http://www.sharp-world.com/</modelURL>
+        <serviceList>
+            <service>
+                <serviceType>urn:schemas-sharp-co-jp:service:X_IPcontrol:1</serviceType>
+                <serviceId>urn:sharp-co-jp:serviceId:X_IPcontrol</serviceId>
+                <controlURL>control/X_IPcontrol</controlURL>
+                <eventSubURL>event/X_IPcontrol</eventSubURL>
+                <SCPDURL>ipcontrol/X_IPcontrol.xml</SCPDURL>
+                
+            </service>
+            
+        </serviceList>
+    </device>
+</root>

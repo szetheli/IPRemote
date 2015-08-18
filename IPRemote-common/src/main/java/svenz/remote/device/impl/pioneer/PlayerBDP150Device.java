@@ -491,5 +491,6 @@ public class PlayerBDP150Device extends AbstractQueuingDevice
 				m_disk.setSelection("Open");
 		}
 	}
+	
 }
 

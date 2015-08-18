@@ -76,7 +76,7 @@ public abstract class SocketChannelInstance<T extends SelectableChannel> impleme
 		((ByteBuffer) b.flip()).get(bytes);
 
 		if (LOGGER.isTraceEnabled())
-			LOGGER.trace("Read: {} from {}", bytes.length > 100 ? bytes : bytes.length, address);
+			LOGGER.trace("Read: {} from {}", bytes.length <= 100 ? bytes : bytes.length, address);
 
 		m_callback.handleRead(bytes, address);
 	}

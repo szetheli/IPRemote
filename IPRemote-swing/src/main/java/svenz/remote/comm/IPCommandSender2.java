@@ -86,6 +86,7 @@ public class IPCommandSender2 implements Callable<Void>, ITCPSocketChannelCallba
 			else
 				line = line + "\r\n";
 
+			LOGGER.trace("Sent: {}", line);
 			m_instance.write(ByteBuffer.wrap(line.getBytes()));
 		}
 		return null;

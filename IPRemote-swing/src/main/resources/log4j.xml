@@ -33,10 +33,10 @@
 		<level value="TRACE" />
 	</logger>
 	<logger name="svenz.remote.net.nio.SocketChannelInstance">
-		<level value="TRACE" />
+		<!-- <level value="TRACE" />-->
 	</logger>
 	<logger name="svenz.remote.net.nio.SocketChannelManager">
-		<level value="TRACE" />
+		<!-- <level value="TRACE" /> -->
 	</logger>
 	<logger name="svenz.remote.net.protocol.ssdp.SSDPManager">
 		<level value="TRACE" />
@@ -48,6 +48,11 @@
 	</logger>
 	<logger name="svenz.remote.device.impl.sharp">
 		<level value="DEBUG" />
+		<appender-ref ref="trace" />
+	</logger>
+	
+	<logger name="svenz.remote.comm.IPCommandSender2">
+		<level value="TRACE" />
 		<appender-ref ref="trace" />
 	</logger>
 

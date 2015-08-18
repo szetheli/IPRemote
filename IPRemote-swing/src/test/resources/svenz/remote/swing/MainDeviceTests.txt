@@ -1,0 +1,16 @@
+ssdp.avr.response
+avr.PWR0
+avr.MUT1
+avr.VOL056
+
+ssdp.bd.response
+bd.BDP-150
+bd.P01
+bd.0xx
+bd.E04
+
+ssdp.tv.response
+tv.AQUOS LE650U
+tv.ERR
+
+status
